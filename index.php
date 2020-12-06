@@ -10,4 +10,22 @@
    } else {
       echo "Opened database successfully\n";
    }
+   
+      $sql =<<<EOF
+      SELECT * from user;
+EOF;
+
+   $ret = pg_query($db, $sql);
+   if(!$ret) {
+      echo pg_last_error($db);
+      exit;
+   } 
+   while($row = pg_fetch_row($ret)) {
+      echo "ID = ". $row[0] . "\n";
+      echo "First name = ". $row[1] ."\n";
+      echo "Last Name = ". $row[2] ."\n";
+      echo "Email =  ".$row[3] ."\n\n";
+   }
+   echo "Operation done successfully\n";
+   pg_close($db);
 ?>
