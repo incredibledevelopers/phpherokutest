@@ -11,21 +11,13 @@
       echo "Opened database successfully<br>";
    }
    
-      $sql =<<<EOF
-      SELECT * from user;
-EOF;
+  $query = "SELECT * FROM user LIMIT 5"; 
 
-   $ret = pg_query($db, $sql);
-   if(!$ret) {
-      echo pg_last_error($db);
-      exit;
-   } 
-   while($row = pg_fetch_row($ret)) {
-      echo "ID = ". $row[0] . "<br>";
-      echo "First name = ". $row[1] ."<br>";
-      echo "Last Name = ". $row[2] ."<br>";
-      echo "Email =  ".$row[3] ."<br>";
-   }
-   echo "Operation done successfully<br>";
+$rs = pg_query($db, $query) or die("Cannot execute query: $query\n");
+
+while ($row = pg_fetch_row($rs)) {
+  echo "$row[0] $row[1] $row[2] $row[3] \n";
+}
+
    pg_close($db);
 ?>
