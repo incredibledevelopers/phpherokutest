@@ -6,9 +6,9 @@
 
    $db = pg_connect( "$host $port $dbname $credentials"  );
    if(!$db) {
-      echo "Error : Unable to open database\n";
+      echo "Error : Unable to open database<br>";
    } else {
-      echo "Opened database successfully\n";
+      echo "Opened database successfully<br>";
    }
    
       $sql =<<<EOF
@@ -21,11 +21,11 @@ EOF;
       exit;
    } 
    while($row = pg_fetch_row($ret)) {
-      echo "ID = ". $row[0] . "\n";
-      echo "First name = ". $row[1] ."\n";
-      echo "Last Name = ". $row[2] ."\n";
-      echo "Email =  ".$row[3] ."\n\n";
+      echo "ID = ". $row[0] . "<br>";
+      echo "First name = ". $row[1] ."<br>";
+      echo "Last Name = ". $row[2] ."<br>";
+      echo "Email =  ".$row[3] ."<br>";
    }
-   echo "Operation done successfully\n";
+   echo "Operation done successfully<br>";
    pg_close($db);
 ?>
